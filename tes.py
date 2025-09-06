@@ -1,10 +1,6 @@
-from dotenv import load_dotenv
-load_dotenv()
-
 from agno.agent import Agent
 from agno.app.whatsapp.app import WhatsappAPI
 from agno.models.google import Gemini
-
 
 image_agentg = Agent(
     model=Gemini(
@@ -24,4 +20,4 @@ whatsapp_app = WhatsappAPI(
 app = whatsapp_app.get_app()
 
 if __name__ == "__main__":
-    whatsapp_app.serve(app="image_generation_model:app", port=8000, reload=True)
+    whatsapp_app.serve(app="tes:app", port=8000, reload=True)
