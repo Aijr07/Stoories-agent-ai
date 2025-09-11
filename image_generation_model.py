@@ -69,15 +69,13 @@ class MemoryWhatsappAPI(WhatsappAPI):
             img1, img2 = user_memory[user_id]["images"][-2:]
 
             # Prompt untuk gabungkan
-            # Prompt + 2 gambar dikirim ke model
-            prompt = "Gabungkan kedua gambar ini menjadi satu gambar komposit yang menarik. Pastikan objek dari kedua gambar terlihat jelas dan proporsional."
-
-            response = await self.agent.run(
-                prompt,
-                images=[img1, img2]  # ✅ kirim 2 gambar ke Gemini
+            prompt = (
+                f"Gabungkan dua gambar berikut menjadi satu komposisi yang menarik:\n"
+                f"Gambar 1: {img1}\n"
+                f"Gambar 2: {img2}\n"
             )
 
-
+            response = await self.agent.run(prompt)
 
             if hasattr(response, "images") and response.images:
                 await self.send_message(
